@@ -1,16 +1,13 @@
 # General
-from DB import DB
 import zulip
-
-# Command imports 
-from commands.Help import Help
-from commands.Projects import Projects
-from commands.Nussecke import Nussecke
+import re
+from DB import DB
+from os import listdir
+from os.path import isfile, join
+from importlib import import_module
 
 # Util import
 from BotUtil import BotUtil
-
-
 
 dbinst = DB()
 client = zulip.Client(config_file="zuliprc")
@@ -37,21 +34,27 @@ class BotHandler(object):
         
 
         global dbinst
-        cmdDict = {
-            "help": Help(),
-            "projects": Projects(),
-            "nussecke": Nussecke()
-        }
 
-        msg: list() = message['content'].split(/ +/)
-        if(msg[0] in cmdDict):
-            cmdDict[msg[0]].run(msg, message, bot_handler, dbinst)
+        # Dynamically load the commands
+        dir_path = './commands/'
+        cmd_dict = dict()
+        all_commands = [f for f in listdir(dir_path) if isfile(join(dir_path, f)) and f != '__init__.py' and f.endswith('.py')]
+
+        for cmd_file in all_commands:
+            cmd = cmd_file.split('.')[0].lower()
+            module = import_module(f"commands.{cmd}")
+            cmd_dict[cmd] = module.CommandHandler()
+            
+        msg: list() = re.split(' +', message['content'])
+
+        if msg[0] in cmd_dict:
+            cmd_dict[msg[0]].run(msg, message, bot_handler, dbinst)
         else:
             print(message)
             print(message['content'])
 
             # https://nwex.de/skateRAUS.gif
-            iamanundefinedfunction()
+            # iamanundefinedfunction()
 
         try:
             for x in message["display_recipient"]:
