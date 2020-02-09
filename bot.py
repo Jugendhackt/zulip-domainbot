@@ -11,8 +11,8 @@ import zulip
 from src.DB import DB
 
 # Util import
-from BotUtil import BotUtil
-from WebServer import WebServer
+from src.BotUtil import BotUtil
+from src.WebServer import WebServer
 
 dbinst = DB()
 client = zulip.Client(config_file="zuliprc")

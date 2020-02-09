@@ -1,8 +1,10 @@
 projects
 
     - Du bist an keinen Projekten beteiligt.
-    - Du bist an den Projekten 'AlpakaSpaceBot', 'Shortmessenger' und 'JH-Badges' beteiligt.
+    - Du bist an folgenden Projekten beteiligt: 
+      * Project
 
 url-Shortener
 
-    - not found: "Wir haben eine ganze Herde Alpakas suchen geschickt. Keins ist zurückgekommen :/"
+    - 404 not found: "Wir haben eine ganze Herde Alpakas suchen geschickt. Keins ist zurückgekommen :/"
+    - 500 server error: "Unser flauschiger Suchtrupp hat gerade Pause, versuche es doch später nochmal"

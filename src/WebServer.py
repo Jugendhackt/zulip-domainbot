@@ -1,6 +1,6 @@
 import http.server
 import socketserver
-from DB import DB
+from src.DB import DB
 
 dbinst = DB
 
@@ -30,10 +30,10 @@ class GetHandler(http.server.SimpleHTTPRequestHandler):
                 self.send_header('Content-type','text/html')
                 self.end_headers()
                 # Send the html message
-                self.wfile.write("<b>Wir haben eine ganze Herde Alpakas suchen geschickt. Keins ist zurückgekommen :/</b><br>Tipp: Achte auf Groß- und Kleinschreibung.".encode())
+                self.wfile.write(open("wspages/not-found.html"))
         except:
             self.send_response(200)
             self.send_header('Content-type','text/html')
             self.end_headers()
             # Send the html message
-            self.wfile.write("<b>Unser flauschiger Schtrupp macht grade pause.</b><br>Bitte komm' später nochmal wieder (500)".encode())
+            self.wfile.write("<b>Unser flauschiger Suchtrupp macht grade pause.</b><br>Bitte komm' später nochmal wieder (500)".encode())
