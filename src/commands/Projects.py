@@ -6,6 +6,6 @@ class CommandHandler:
             for p in content:
                 c.append(p["projectname"])
             content = "\n * ".join(c)
-            bot_handler.send_reply(message, "Du bist an folgenden Projekten beteiligt: \n * "+content)
+            bot_handler.send_reply(message, "Du bist an folgenden Projekten beteiligt: \n * " + content)
         else:
             bot_handler.send_reply(message, "Du bist an keinen Projekten beteiligt")

@@ -8,7 +8,6 @@ class BotUtil:
             if (user["full_name"] == usertag):
                 return user
 
-
     @staticmethod
     def getAllUsers():
         client = zulip.Client(config_file="zuliprc")

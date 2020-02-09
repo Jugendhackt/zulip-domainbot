@@ -1,5 +1,6 @@
 # General
 import zulip
+import threading
 from DB import DB
 from os import listdir
 from os.path import isfile, join
@@ -7,9 +8,12 @@ from importlib import import_module
 
 # Util import
 from BotUtil import BotUtil
+from WebServer import WebServer
 
 dbinst = DB()
 client = zulip.Client(config_file="zuliprc")
+t1 = threading.Thread(target = WebServer().start)
+t1.start()
 
 class BotHandler(object):
     def usage(self):
