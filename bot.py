@@ -43,7 +43,6 @@ class BotHandler(object):
             for x in message["display_recipient"]:
                 rec.append(x["email"])
 
-            print(rec)
             client.set_typing_status({
                 'op': 'start',
                 'to': rec
@@ -55,6 +54,7 @@ class BotHandler(object):
         global dbinst
 
         msg = message['content'].split()
+        print(msg)
 
         if msg[0] in COMMANDS:
             COMMANDS[msg[0]].run(msg, message, bot_handler, dbinst)
@@ -63,20 +63,12 @@ class BotHandler(object):
             print(message['content'])
 
             # https://nwex.de/skateRAUS.gif
-            # iamanundefinedfunction()
+            iamanundefinedfunction()
 
-        try:
-            for x in message["display_recipient"]:
-                rec.append(x["email"])
-
-            print(rec)
-            client.set_typing_status({
-                'op': 'stop',
-                'to': rec
-            })
-            pass
-        except:
-            pass
+        client.set_typing_status({
+            'op': 'stop',
+            'to': rec
+        })
 
 
 handler_class = BotHandler
