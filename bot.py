@@ -11,14 +11,14 @@ from src.DB import DB
 # from src.BotUtil import BotUtil
 
 dbinst = DB()
-client = zulip.Client(config_file="zuliprc")
+client = zulip.Client(config_file="./zuliprc")
 COMMANDS = dict()
 
 
 class BotHandler(object):
     def usage(self):
         # Dynamically load the commands
-        dir_path = './commands/'
+        dir_path = './src/commands/'
         all_commands = [f for f in listdir(dir_path) if
                         isfile(join(dir_path, f)) and f != '__init__.py' and f.endswith('.py')]
 

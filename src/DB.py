@@ -16,6 +16,7 @@ class DB:
                                     password=cfg["password"], authSource=cfg["authSource"],
                                     authMechanism=cfg["authMechanism"])
         self.db = self.__client.asb
+        print('working')
 
     def read_config(self):
         f = open("mongocfg", "r")
