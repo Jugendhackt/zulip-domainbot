@@ -1,4 +1,4 @@
-class Projects:
+class CommandHandler:
     def run(self, msgArr: list(), message: dict(), bot_handler, dbinst):
         content = dbinst.getProjects(message["sender_email"])
         if(len(content) != 0):
