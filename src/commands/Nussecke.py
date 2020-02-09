@@ -1,3 +1,5 @@
+from BotUtil import BotUtil
+
 class Nussecke:
     def run(self, msgArr: list(), message: dict(), bot_handler, dbinst):
         content = ":nussecke:"
