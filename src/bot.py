@@ -43,7 +43,7 @@ class BotHandler(object):
             "nussecke": Nussecke()
         }
 
-        msg: list() = message['content'].split(" ")
+        msg: list() = message['content'].split(/ +/)
         if(msg[0] in cmdDict):
             cmdDict[msg[0]].run(msg, message, bot_handler, dbinst)
         else:
