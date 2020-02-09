@@ -1,0 +1,16 @@
+[
+
+//Projects
+{
+    "id": "0",
+    "name": "",
+    "description": ""
+},
+
+//User-Projects
+{
+    "projectID": "",
+    "email": "" //usermail
+}
+
+]
