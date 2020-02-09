@@ -3,15 +3,10 @@ from DB import DB
 import zulip
 from os import listdir
 from os.path import isfile, join
-
 from importlib import import_module
 
-
-# Command imports 
-from commands.Help import Help
-from commands.Projects import Projects
-from commands.Nussecke import Nussecke
-
+# Util import
+from BotUtil import BotUtil
 
 dbinst = DB()
 client = zulip.Client(config_file="zuliprc")
