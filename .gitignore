@@ -1,5 +1,6 @@
 .idea/
 venv/
 *.iml
-
+/**/__pycache__/
+.vscode/
 zuliprc
