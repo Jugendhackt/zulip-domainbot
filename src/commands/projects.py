@@ -1,7 +1,7 @@
 class CommandHandler:
-    def run(self, msgArr: list(), message: dict(), bot_handler, dbinst):
-        content = dbinst.getProjects(message["sender_email"])
-        if(len(content) != 0):
+    def run(self, msg_arr: list, message: dict, bot_handler, dbinst):
+        content = dbinst.get_projects(message["sender_email"])
+        if len(content) != 0:
             c = []
             for p in content:
                 c.append(p["projectname"])
