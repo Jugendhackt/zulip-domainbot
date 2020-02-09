@@ -1,10 +1,14 @@
 import http.server
 import socketserver
 from src.DB import DB
+from os.path import sep
 
-dbinst = DB
+dbinst = DB()
 
+# Webserver to serve shortlinks created by the bot
 class WebServer:
+
+    # Start method of the server
     def start(self):
         PORT = 8000
 
@@ -13,27 +17,46 @@ class WebServer:
         print("serving at port", PORT)
         httpd.serve_forever()
 
+# Handler handling get requests to the webserver
 class GetHandler(http.server.SimpleHTTPRequestHandler):
 
+    # 
     def do_GET(self):
         patharr = self.path.split("/")
 
-        try:
-            target = dbinst.getSlug(patharr[1])
-
-            if (target != ""):
-                self.send_response(301)
-                self.send_header('Location','https://google.com')
-                self.end_headers()
-            else:
-                self.send_response(404)
+        if patharr[1] == "assets":
+            self.send_response(200)
+            self.send_header('Content-type','image/svg+xml')
+            self.end_headers()
+            self.wfile.write(open(f'.{sep}src{sep}wspages{sep.join(patharr)}', "r").read().encode())
+        
+        else: 
+            if (len(patharr) > 2 and patharr[2] == "info"):
+                target = dbinst.get_slug(patharr[1])
+                self.send_response(200)
                 self.send_header('Content-type','text/html')
                 self.end_headers()
                 # Send the html message
-                self.wfile.write(open("wspages/not-found.html"))
-        except:
-            self.send_response(200)
-            self.send_header('Content-type','text/html')
-            self.end_headers()
-            # Send the html message
-            self.wfile.write("<b>Unser flauschiger Suchtrupp macht grade pause.</b><br>Bitte komm' später nochmal wieder (500)".encode())
+                self.wfile.write(open(f'.{sep}src{sep}wspages{sep}slug-info.html', "rb").read().replace("{creatorName}".encode(), target["creatorName"].encode()).replace("{slug}".encode(), patharr[1].encode()).replace("{timestamp}".encode(), target["timestamp"].encode()))
+            else:
+                try:
+                    target = dbinst.get_slug(patharr[1])
+
+                    if (target != None):
+                        print(target)
+                        self.send_response(301)
+                        self.send_header('Location',target["target"])
+                        self.end_headers()
+                    else:
+                        self.send_response(404)
+                        self.send_header('Content-type','text/html')
+                        self.end_headers()
+                        # Send the html message
+                        self.wfile.write(open(f'.{sep}src{sep}wspages{sep}not-found.html', "rb").read())
+                except Exception as e:
+                    print(e)
+                    self.send_response(200)
+                    self.send_header('Content-type','text/html')
+                    self.end_headers()
+                    # Send the html message
+                    self.wfile.write(open(f'.{sep}src{sep}wspages{sep}internal-server-error.html', "rb").read())

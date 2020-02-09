@@ -2,7 +2,6 @@ import json
 
 from pymongo import MongoClient
 
-
 class DB:
     def __init__(self):
         self.__client = None
@@ -25,3 +24,6 @@ class DB:
 
     def get_projects(self, useremail):
         return list(self.db.projects.find({"useremail": useremail}))
+
+    def get_slug(self, slug):
+        return self.db.shortlinks.find_one({"slug": slug})

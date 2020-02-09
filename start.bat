@@ -1,0 +1,1 @@
+zulip-run-bot bot.py --config-file zuliprc
