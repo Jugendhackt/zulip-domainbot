@@ -1,6 +1,5 @@
 # General
 import zulip
-import re
 from DB import DB
 from os import listdir
 from os.path import isfile, join
@@ -45,7 +44,7 @@ class BotHandler(object):
             module = import_module(f"commands.{cmd}")
             cmd_dict[cmd] = module.CommandHandler()
             
-        msg: list() = re.split(' +', message['content'])
+        msg: list() = message['content'].split()
 
         if msg[0] in cmd_dict:
             cmd_dict[msg[0]].run(msg, message, bot_handler, dbinst)
