@@ -1,7 +1,12 @@
 from commands.Help import Help
+from DB import DB
 
 class BotHandler(object):
+    dbinst
+
     def usage(self):
+        global dbinst
+        dbinst = DB()
         return "This bot registers Jugend hackt Subdomains"
 
     def handle_message(self, message: list(), bot_handler):
