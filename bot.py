@@ -4,7 +4,7 @@ import threading
 from src.DB import DB
 from importlib import import_module
 from os import listdir
-from os.path import isfile, join
+from os.path import isfile, join, sep
 
 import zulip
 
@@ -20,10 +20,11 @@ t1 = threading.Thread(target = WebServer().start)
 t1.start()
 COMMANDS = dict()
 
+
 class BotHandler(object):
     def usage(self):
         # Dynamically load the commands
-        dir_path = './src/commands/'
+        dir_path = f'.{sep}src{sep}commands{sep}'
         all_commands = [f for f in listdir(dir_path) if
                         isfile(join(dir_path, f)) and f != '__init__.py' and f.endswith('.py')]
 
@@ -55,7 +56,7 @@ class BotHandler(object):
         msg = message['content'].split()
 
         if msg[0] in COMMANDS:
-            COMMANDS[msg[0]].run(msg, message, bot_handler, dbinst)
+            COMMANDS[msg[0]].run(msg[1:], message, bot_handler, dbinst)
         else:
             print(message)
             print(message['content'])
