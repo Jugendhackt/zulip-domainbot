@@ -17,34 +17,36 @@ class DB:
                                     password=cfg["password"], authSource=cfg["authSource"],
                                     authMechanism=cfg["authMechanism"])
         self.db = self.__client.asb
-        print('working')
 
     def read_config(self):
         f = open("mongocfg", "r")
         cfg = json.loads(f.read())
         return cfg
 
-    def get_projects(self, useremail):
+    def get_projects(self, useremail: str):
         return list(self.db.projects.find({"useremail": useremail}))
 
     # project management
 
-    def create_project(self, project_name: str, admin_user: str) -> bool:
+    def create_project(self, project_name: str, admin_user: str) -> int:
         """
         Creates the project
         :param project_name:
         :param admin_user:
         :return:
         """
-        projects = list(self.db.projects.find({"name": project_name}))
-        if len(projects) == 0:
-            # Create project
-            insert_project = self.db.projects.insert_one({"name": project_name, "description": ""})
-            # Create MongoDB object
-            self.db.user_projects.insert_project.inserted_id
-        else:
-            return False
-        pass
+        try:
+            projects = list(self.db.projects.find({"projectname": project_name}))
+            print(projects)
+            if len(projects) == 0:
+                # Create project
+                insert_project = self.db.projects.insert_one({"projectname": project_name, "useremail": admin_user})
+                return 0
+            else:
+                return 1
+        except Exception as e:
+            print(e)
+            return -1
 
     def add_user_to_project(self, project_name: str, user_email: str):
         """

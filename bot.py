@@ -64,7 +64,7 @@ class BotHandler(object):
             print(message['content'])
 
             # https://nwex.de/skateRAUS.gif
-            iamanundefinedfunction()
+            # iamanundefinedfunction()
 
         client.set_typing_status({
             'op': 'stop',
