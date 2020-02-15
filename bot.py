@@ -1,7 +1,9 @@
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # General
-import zulip
 import threading
-from src.DB import DB
 from importlib import import_module
 from os import listdir
 from os.path import isfile, join, sep
@@ -11,12 +13,11 @@ import zulip
 from src.DB import DB
 
 # Util import
-from src.BotUtil import BotUtil
 from src.WebServer import WebServer
 
 dbinst = DB()
 client = zulip.Client(config_file="zuliprc")
-t1 = threading.Thread(target = WebServer().start)
+t1 = threading.Thread(target=WebServer().start)
 t1.start()
 COMMANDS = dict()
 
@@ -49,8 +50,8 @@ class BotHandler(object):
                 'to': rec
             })
             pass
-        except:
-            pass
+        except Exception as e:
+            print(e)
 
         global dbinst
 

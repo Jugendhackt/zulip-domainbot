@@ -1,5 +1,7 @@
 import datetime
 import json
+from os import getenv as ge
+
 
 from pymongo import MongoClient
 
@@ -13,9 +15,9 @@ class DB:
     def start(self):
         cfg = self.read_config()
         print(cfg)
-        self.__client = MongoClient(host=cfg["location"], port=cfg["port"], username=cfg["user"],
-                                    password=cfg["password"], authSource=cfg["authSource"],
-                                    authMechanism=cfg["authMechanism"])
+        self.__client = MongoClient(host=ge('DBLocation'), port=int(ge("DBPort")), username=ge("DBUser"),
+                                    password=ge("DBPassword"), authSource=ge("DBAuthSource"),
+                                    authMechanism=ge("DBAuthMechanism"))
         self.db = self.__client.asb
 
     def read_config(self):
