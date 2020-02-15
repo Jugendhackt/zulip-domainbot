@@ -1,0 +1,4 @@
+[api]
+email=<bot-email>
+key=<bot-secret>
+site=<zulip-server-url>

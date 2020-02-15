@@ -13,17 +13,10 @@ class DB:
         self.start()
 
     def start(self):
-        cfg = self.read_config()
-        print(cfg)
         self.__client = MongoClient(host=ge('DBLocation'), port=int(ge("DBPort")), username=ge("DBUser"),
                                     password=ge("DBPassword"), authSource=ge("DBAuthSource"),
                                     authMechanism=ge("DBAuthMechanism"))
         self.db = self.__client.asb
-
-    def read_config(self):
-        f = open("mongocfg", "r")
-        cfg = json.loads(f.read())
-        return cfg
 
     def get_projects(self, useremail: str):
         return list(self.db.projects.find({"useremail": useremail}))
