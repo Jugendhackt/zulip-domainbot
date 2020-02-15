@@ -58,8 +58,10 @@ class BotHandler(object):
         msg = message['content'].split()
         print(msg)
 
-        if msg[0] in COMMANDS:
-            COMMANDS[msg[0]].run(msg[1:], message, bot_handler, dbinst)
+        cmd = msg[0].lower()
+
+        if cmd in COMMANDS:
+            COMMANDS[cmd].run(msg[1:], message, bot_handler, dbinst)
         else:
             print(message)
             print(message['content'])
