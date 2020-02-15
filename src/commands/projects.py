@@ -1,6 +1,7 @@
 class CommandHandler:
     def run(self, msg_arr: list, message: dict, bot_handler, dbinst):
         content = dbinst.get_projects(message["sender_email"])
+        print(content)
         if len(content) != 0:
             c = []
             for p in content:

@@ -20,6 +20,7 @@ t1 = threading.Thread(target = WebServer().start)
 t1.start()
 COMMANDS = dict()
 
+
 class BotHandler(object):
     def usage(self):
         # Dynamically load the commands
@@ -57,13 +58,13 @@ class BotHandler(object):
         print(msg)
 
         if msg[0] in COMMANDS:
-            COMMANDS[msg[0]].run(msg, message, bot_handler, dbinst)
+            COMMANDS[msg[0]].run(msg[1:], message, bot_handler, dbinst)
         else:
             print(message)
             print(message['content'])
 
             # https://nwex.de/skateRAUS.gif
-            iamanundefinedfunction()
+            # iamanundefinedfunction()
 
         client.set_typing_status({
             'op': 'stop',
