@@ -1,0 +1,95 @@
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>URL Info</title>
+</head>
+<body data-gr-c-s-loaded="true">
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: #e7eaed;
+            background-image: url('/assets/JH-Pattern.svg');
+            background-size: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        h1, p {
+            max-width: 90vw;
+            height: auto;
+        }
+
+        button {
+            background: #00a6de;
+            display: inline-block;
+            padding: .6em 1em .5em;
+            text-transform: uppercase;
+            color: #fff!important;
+            font-weight: 700;
+            text-decoration: none;
+            border: none!important;
+            cursor: pointer;
+            line-height: 2;
+            margin-top: 40px
+        }
+
+        button:hover {
+            background: #00498c!important;
+        }
+    </style>
+
+    <div style="text-align: center;">
+        <img src="/assets/JH-Logo.svg" height="100px">
+        <h1>AlpakaSpaceBot URL-Shortener Info</h1>
+        <p>Slug "{slug}" erstellt von "{creatorName}" vor <span id="time"></p>
+        <button onclick="window.location.href = 'mailto:abuse@alpaka.space'">Diesen Slug melden</button>
+    </div>
+
+    <script>
+        function timeSince(date) {
+            var seconds = Math.floor((new Date() - date) / 1000);
+            var interval = Math.floor(seconds / 31536000);
+
+            if (interval > 1) {
+                return interval + " Jahren";
+            }
+            interval = Math.floor(seconds / 2592000);
+            if (interval > 1) {
+                return interval + " Monaten";
+            }
+            interval = Math.floor(seconds / 86400);
+            if (interval > 1) {
+                return interval + " Tagen";
+            }
+            interval = Math.floor(seconds / 3600);
+            if (interval > 1) {
+                return interval + " Stunden";
+            }
+            interval = Math.floor(seconds / 60);
+            if (interval > 1) {
+                return interval + " Minuten";
+            }
+            return Math.floor(seconds) + " Sekunden";
+        }
+        
+        document.getElementById("time").innerText = timeSince(new Date(parseInt({timestamp}) * 1000))
+    </script>
+    </body>
+</html>

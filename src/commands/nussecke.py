@@ -1,6 +1,3 @@
-from src.BotUtil import BotUtil
-
-
 class CommandHandler:
     def run(self, msg_arr: list, message: dict, bot_handler, dbinst):
         content = ":nussecke:"

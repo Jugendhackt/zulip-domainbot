@@ -1,3 +1,4 @@
+import datetime
 import json
 
 from pymongo import MongoClient
@@ -53,3 +54,15 @@ class DB:
         :return:
         """
         pass
+
+    def get_slug(self, slug):
+        return self.db.shortlinks.find_one({"slug": slug})
+
+    def set_slug(self, slug, creator, creatorName, target):
+        return self.db.shortlinks.insert_one({
+            "creator": creator,
+            "creatorName": creatorName,
+            "timestamp": str(datetime.datetime.now().timestamp()),
+            "slug": slug,
+            "target": target
+        })
