@@ -46,8 +46,12 @@ class DB:
     def invite_user_to_project(self, user_email: str, project_name: str, admin_user: str):
         try:
             project = list(self.db.projects.find({"useremail": admin_user, "projectname": project_name}))
+            user_project = list(self.db.projects.find({"useremail": user_email, "projectname": project_name}))
             if len(project) == 0:
                 return 1
+
+            if len(user_project) > 0:
+                return 2
 
             self.db.projects.insert_one({"useremail": user_email, "projectname": project_name})
             return 0

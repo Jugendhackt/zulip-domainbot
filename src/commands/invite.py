@@ -11,6 +11,8 @@ class CommandHandler:
             content = f"*{invite_user['full_name']}* wurde erfolgreich zu *{invite_project}* hinzugefügt!"
         elif resp == 1:
             content = f"*{invite_project}* gehört **nicht** dir!"
+        elif resp == 2:
+            content = f"*{invite_user['full_name']}* wurde bereits dem Projekt {invite_project} hinzugefügt"
         else:
             content = "An error occurred, please refer to an admin"
 
