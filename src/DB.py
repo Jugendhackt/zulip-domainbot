@@ -43,14 +43,17 @@ class DB:
             print(e)
             return -1
 
-    def add_user_to_project(self, project_name: str, user_email: str):
-        """
-        Adds an user to the project
-        :param project_name:
-        :param user_email:
-        :return:
-        """
-        pass
+    def invite_user_to_project(self, user_email: str, project_name: str, admin_user: str):
+        try:
+            project = list(self.db.projects.find({"useremail": admin_user, "projectname": project_name}))
+            if len(project) == 0:
+                return 1
+
+            self.db.projects.insert_one({"useremail": user_email, "projectname": project_name})
+            return 0
+        except Exception as e:
+            print(e)
+            return -1
 
     def get_slug(self, slug):
         return self.db.shortlinks.find_one({"slug": slug})
