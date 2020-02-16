@@ -30,3 +30,6 @@ class CommandHandler:
     def generate_random_string(self):
         chars = string.ascii_lowercase + string.digits
         return ''.join(random.choice(chars) for x in range(8))
+
+
+usage = "shorten <url> [<slug>]"

@@ -19,3 +19,6 @@ class CommandHandler:
             content = "An error occurred, please refer to an admin!"
 
         bot_handler.send_reply(message, content)
+
+
+usage = "create <Projekt Name>"

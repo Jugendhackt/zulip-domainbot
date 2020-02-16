@@ -10,3 +10,6 @@ class CommandHandler:
             bot_handler.send_reply(message, "Du bist an folgenden Projekten beteiligt: \n * " + content)
         else:
             bot_handler.send_reply(message, "Du bist an keinen Projekten beteiligt")
+
+
+usage = "projects"
