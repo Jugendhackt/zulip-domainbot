@@ -2,6 +2,8 @@ from src.BotUtil import BotUtil
 
 
 class CommandHandler:
+    usage = "invite <Mention> <Projektname>"
+
     def run(self, msg_arr: list, message: dict, bot_handler, dbinst):
         invite_user = BotUtil.get_user_by_tag(msg_arr[0])
         invite_project = msg_arr[1]
@@ -17,6 +19,3 @@ class CommandHandler:
             content = "An error occurred, please refer to an admin"
 
         bot_handler.send_reply(message, content)
-
-
-usage = "invite <Mention> <Projektname>"

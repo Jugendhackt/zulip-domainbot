@@ -36,7 +36,7 @@ class BotHandler(object):
 
             module = import_module(f"src.commands.{cmd}")
             COMMANDS[cmd] = module.CommandHandler()
-            HELP[cmd] = module.usage
+            HELP[cmd] = module.CommandHandler.usage
 
         return "This bot registers Jugend hackt Subdomains"
 

@@ -3,6 +3,8 @@ import string
 
 
 class CommandHandler:
+    usage = "shorten <url> [<slug>]"
+
     def run(self, msg_arr: list, message: dict, bot_handler, dbinst):
         if len(msg_arr) == 1:
             bot_handler.send_reply(message,
@@ -30,6 +32,3 @@ class CommandHandler:
     def generate_random_string(self):
         chars = string.ascii_lowercase + string.digits
         return ''.join(random.choice(chars) for x in range(8))
-
-
-usage = "shorten <url> [<slug>]"

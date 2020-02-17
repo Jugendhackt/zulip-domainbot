@@ -1,7 +1,9 @@
 class CommandHandler:
+    usage = "help [<Command>]"
+
     def run(self, msg_arr: list, message: dict, bot_handler, helper: dict):
         if len(msg_arr) == 0:
-            content = "**Hilfe**\n\nEine Liste aller verfügbarer Commands:\n"
+            content = "**Hilfe**\n\nEine Liste aller verfügbaren Commands:\n"
             for k in helper.keys():
                 content += f"* {k}\n"
         else:
@@ -9,9 +11,8 @@ class CommandHandler:
             if cmd in helper:
                 content = f"**Hilfe ({cmd})**\n\n{helper[cmd]}"
             else:
-                content = f"**Hilfe**\n\n Den Command {cmd} gibt es nicht!"
+                content = "**Hilfe**\n\nDiesen Command gibt es leider nicht :cry:\n\nEine Liste aller verfügbaren Commands:\n"
+                for k in helper.keys():
+                    content += f"* {k}\n"
 
         bot_handler.send_reply(message, content)
-
-
-usage = "help [<Command>]"

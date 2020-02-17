@@ -1,4 +1,6 @@
 class CommandHandler:
+    usage = "projects"
+
     def run(self, msg_arr: list, message: dict, bot_handler, dbinst):
         content = dbinst.get_projects(message["sender_email"])
         print(content)
@@ -10,6 +12,3 @@ class CommandHandler:
             bot_handler.send_reply(message, "Du bist an folgenden Projekten beteiligt: \n * " + content)
         else:
             bot_handler.send_reply(message, "Du bist an keinen Projekten beteiligt")
-
-
-usage = "projects"
