@@ -2,6 +2,8 @@ from src.BotUtil import BotUtil
 
 
 class CommandHandler:
+    usage = "Invite lädt ein neuen Nutzer zu einem Projekt ein.\nFalls das Projekt mit Webhosting verwendet wird, werden die SFTP Daten per DM geschickt.\n*Benutzung:* `invite <Mention> <Projektname>`"
+
     def run(self, msg_arr: list, message: dict, bot_handler, dbinst):
         invite_user = BotUtil.get_user_by_tag(msg_arr[0])
         invite_project = msg_arr[1]

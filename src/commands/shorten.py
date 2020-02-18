@@ -3,6 +3,8 @@ import string
 
 
 class CommandHandler:
+    usage = "*Benutzung:* `shorten <url> [<slug>]`"
+
     def run(self, msg_arr: list, message: dict, bot_handler, dbinst):
         if len(msg_arr) == 1:
             bot_handler.send_reply(message,

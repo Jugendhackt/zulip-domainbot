@@ -20,6 +20,7 @@ client = zulip.Client(config_file="zuliprc")
 t1 = threading.Thread(target=WebServer().start)
 t1.start()
 COMMANDS = dict()
+HELP = dict()
 
 
 class BotHandler(object):
@@ -35,6 +36,7 @@ class BotHandler(object):
 
             module = import_module(f"src.commands.{cmd}")
             COMMANDS[cmd] = module.CommandHandler()
+            HELP[cmd] = module.CommandHandler.usage
 
         return "This bot registers Jugend hackt Subdomains"
 
@@ -61,8 +63,12 @@ class BotHandler(object):
         cmd = msg[0].lower()
 
         if cmd in COMMANDS:
-            COMMANDS[cmd].run(msg[1:], message, bot_handler, dbinst)
+            if cmd == 'help':
+                COMMANDS['help'].run(msg[1:], message, bot_handler, HELP)
+            else:
+                COMMANDS[cmd].run(msg[1:], message, bot_handler, dbinst)
         else:
+            COMMANDS['help'].run(msg[1:], message, bot_handler, HELP)
             print(message)
             print(message['content'])
 
