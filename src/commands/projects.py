@@ -1,5 +1,5 @@
 class CommandHandler:
-    usage = "projects"
+    usage = "Projects zeigt eine Liste von Projekten, zu denen man gehört.\n*Benutzung:* `projects`"
 
     def run(self, msg_arr: list, message: dict, bot_handler, dbinst):
         content = dbinst.get_projects(message["sender_email"])

@@ -3,7 +3,7 @@ import string
 
 
 class CommandHandler:
-    usage = "shorten <url> [<slug>]"
+    usage = "*Benutzung:* `shorten <url> [<slug>]`"
 
     def run(self, msg_arr: list, message: dict, bot_handler, dbinst):
         if len(msg_arr) == 1:

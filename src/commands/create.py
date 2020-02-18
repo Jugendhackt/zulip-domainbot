@@ -2,7 +2,7 @@ from src.DNSManager import DNSManager
 
 
 class CommandHandler:
-    usage = "create <Projekt Name>"
+    usage = "Create erstellt ein Projekt mit Subdomain und DNS Entry.\n Des weiteren kann der Command `addwh` verwendet werden, um extra Webhosting hinzuzufügen.\n*Benutzung:* `create <Projekt Name>`"
 
     def run(self, msg_arr: list, message: dict, bot_handler, dbinst):
         if not len(msg_arr) > 0:
